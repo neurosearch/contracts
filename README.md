@@ -1,5 +1,6 @@
 # How it Works
-![This is an image]([https://myoctocat.com/assets/images/base-octocat.svg](https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FAwSaQivGXwDgWxQQ1kB1%2Fuploads%2FUPQ8fqBK9kL4JwJ6wm70%2Fai.png?alt=media&token=e3672e41-d044-4ad4-849b-e7d346c77893)
+![AI](https://neurosearch.ai/assets/img/github/ai.jpg)
+
 
 <b>Neural Search</b> utilizes artificial neural networks to provide accurate and personalized results to users. This section will provide a technical explanation of the workings of the Neural Search technology.
 
