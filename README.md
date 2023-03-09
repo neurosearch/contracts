@@ -1,4 +1,5 @@
-#How it Works
+#### How it Works
+
 <b>Neural Search</b> utilizes artificial neural networks to provide accurate and personalized results to users. This section will provide a technical explanation of the workings of the Neural Search technology.
 
 The system operates by first pre-processing and indexing vast amounts of data from various sources. This data includes text, images, videos, and other multimedia content. The data is then processed using natural language processing (NLP) and machine learning algorithms, which help the system understand the context and meaning of the user's search query.
