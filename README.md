@@ -1,4 +1,5 @@
 # How it Works
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 
 <b>Neural Search</b> utilizes artificial neural networks to provide accurate and personalized results to users. This section will provide a technical explanation of the workings of the Neural Search technology.
 
