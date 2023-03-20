@@ -1,0 +1,97 @@
+pragma solidity ^0.5.1;
+
+/**
+ * @title Presale Contract
+ * @dev This contract allows users to exchange USDT/BUSD tokens for NEURO tokens at a rate of 1 USDT : 0.05$ = 20 NEURO.
+ */
+contract Presale {
+    // Address of the contract creator
+    address public creator;
+    
+    // Amount of USDT tokens
+    uint256 public usdtAmount;
+    
+    // Amount of BUSD tokens
+    uint256 public busdAmount;
+    
+    // Amount of NEURO tokens
+    uint256 public neuroAmount;
+    
+    // Address of the USDT token contract
+    address public usdtContract = 0x55d398326f99059fF775485246999027B3197955;
+    
+    // Address of the BUSD token contract
+    address public busdContract = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
+    
+    // Address of the NEURO token contract
+    address public neuroContract = 0xC26191047C619960248F9bB982493A3f96455875;
+    
+    // Minimum amount of USDT required for purchase
+    uint256 public minUsdtAmount;
+    
+    // Rate of exchange for USDT/BUSD to NEURO
+    uint256 public rate;
+    
+    // Event for logging deposits
+    event Deposit(address indexed _from, uint256 _usdtAmount, uint256 _busdAmount);
+    
+    /**
+     * @dev Constructor to set initial values
+     */
+    constructor () public {
+        creator = msg.sender;
+        minUsdtAmount = 100 * 10 ** 18;
+        rate = 20 * 10 ** 18;
+    }
+    
+    /**
+     * @dev Function to deposit USDT and BUSD tokens
+     */
+    function deposit(uint256 _usdtAmount, uint256 _busdAmount) public {
+        // Check if the minimum amount of USDT is sent
+        require(_usdtAmount >= minUsdtAmount);
+        
+        // Check if the sender has the tokens
+        require(ERC20(usdtContract).allowance(msg.sender, address(this)) >= _usdtAmount);
+        require(ERC20(busdContract).allowance(msg.sender, address(this)) >= _busdAmount);
+        
+        // Transfer the tokens from sender to the contract
+        ERC20(usdtContract).transferFrom(msg.sender, address(this), _usdtAmount);
+        ERC20(busdContract).transferFrom(msg.sender, address(this), _busdAmount);
+        
+        // Update the token amounts
+        usdtAmount += _usdtAmount;
+        busdAmount += _busdAmount;
+        neuroAmount = (usdtAmount + (busdAmount * rate)) / rate;
+        
+        // Log the deposit
+        emit Deposit(msg.sender, _usdtAmount, _busdAmount);
+    }
+    
+    /**
+     * @dev Function to withdraw NEURO tokens
+     */
+    function withdraw() public {
+        // Calculate the amount of NEURO to be withdrawn
+        uint256 neuroToWithdraw = neuroAmount;
+        
+        // Transfer the NEURO tokens to the sender
+        ERC20(neuroContract).transfer(msg.sender, neuroToWithdraw);
+        
+        // Update the token amount
+        neuroAmount -= neuroToWithdraw;
+    }
+    
+    /**
+     * @dev Function to reclaim the USDT and BUSD tokens
+     */
+    function reclaim() public {
+        // Transfer the tokens from the contract to the creator
+        ERC20(usdtContract).transfer(creator, usdtAmount);
+        ERC20(busdContract).transfer(creator, busdAmount);
+        
+        // Update the token amounts
+        usdtAmount = 0;
+        busdAmount = 0;
+    }
+}
