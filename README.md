@@ -12,6 +12,6 @@ One of the key advantages of Neural Search is its ability to understand and inte
 
 Additionally, Neural Search uses advanced machine learning algorithms to continually improve its results over time. The system uses user behavior data, such as click and conversion rates, to improve the accuracy of its results. This means that the more the system is used, the more accurate and relevant its results become.
 
-# Contract Neuro Token
+# Contract Neuro Token 
 https://bscscan.com/token/0xc26191047c619960248f9bb982493a3f96455875#code
 
