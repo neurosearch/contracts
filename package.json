@@ -1,0 +1,43 @@
+{
+  "name": "@gpt-coin/contracts",
+  "version": "1.0.0",
+  "author": "gpt.coin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gptcoin/gpt-coin"
+  },
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "precompile": "rimraf ./build/",
+    "build": "waffle & waffle flatten",
+    "compile": "waffle",
+    "pretest": "yarn compile",
+    "test": "mocha --timeout 20000",
+    "lint": "prettier ./test/**/*.ts --check",
+    "prepublishOnly": "yarn test",
+    "flatten": "waffle flatten"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@uniswap/v2-core": "^1.0.1",
+    "chai": "^4.3.7",
+    "ethereum-waffle": "^4.0.10",
+    "ethereumjs-util": "^7.1.5",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "solc": "0.8.19",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "ethers": "^6.3.0"
+  }
+}
